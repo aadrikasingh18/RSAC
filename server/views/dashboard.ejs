@@ -61,34 +61,19 @@
 </head>
 
 <body>
-   <!-- <h1>DASHBOARD</h1>
+   <h1>DASHBOARD</h1>
    <h1>HELLO <%= user.charAt(0).toUpperCase()+user.slice(1) %>
-   </h1> -->
+   </h1>
 
-   <div class="navbar">
-      REMOTE SENSING APPLICATION CENTER, UTTAR PRADESH
-   </div>
-
-   <div class="navbelow">
-      Request form to OPEN / EXTEND User Account in CIP Division
-   </div>
-
-   <ul>
-      <% if(typeof errors !='undefined') { %>
-          <% errors.forEach(error=> { %>
-              <li>
-                  <%= error.message %>
-              </li>
-              <% }) %>
-                  <% } %>
-  </ul>
+   
 
    <div class="container">
       <form action="/dashboard" method="POST">
          <div class="row">
             <div class="col-6">
+
                <div class="names">
-                  Name : <input type="text" id="name" name="name" />
+                  Name : <input type="text" id="fname" name="fname" />
                </div>
 
                <div class="names">
@@ -96,7 +81,7 @@
                </div>
 
                <div class="names">
-                  A/C Opening Date : <input type="date" id="accopen" name="accopen" />
+                  A/C Opening Date : <input type="text" id="accopen" name="accopen" />
                </div>
 
                <div class="names">
@@ -139,15 +124,19 @@
                <div class="names">
                   Designation : <input type="text" id="designation" name="designation" />
                </div>
+
                <div class="names">
                   Division : <input type="text" id="division" name="division" />
                </div>
+
                <div class="names">
-                  A/C Expiry Date : <input type="date" id="accexp" name="accexp" />
+                  A/C Expiry Date : <input type="text" id="accexp" name="accexp" pattern="\d{4}-\d{2}-\d{2}" />
                </div>
+
                <div class="names">
                   Disk Quota Required : <input type="number" id="requirement" name="requirement" />
                </div>
+
                <div class="names">
                   Email : <input type="email" id="email" name="email" />
                </div>
@@ -167,7 +156,10 @@
       </div>
    </div>
    <div class="container">
-      <button type="button" class="btn btn-success">SUBMIT</button>
+
+      
+         <button type="button" class="btn btn-success">SUBMIT</button>
+      
       <span>
          <a href="/logout">
             <button type="button" class="btn btn-danger">LOGOUT</button>

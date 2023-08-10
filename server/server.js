@@ -1,7 +1,5 @@
 const express = require("express");
-const dotenv = require("dotenv");
 const cors = require("cors");
-const pool = require("./database");
 const { poolcb } = require("./dbConfig");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
@@ -9,7 +7,6 @@ const flash = require("express-flash");
 const passport = require("passport");
 
 const initializePassport = require("./passportConfig");
-
 initializePassport(passport);
 
 const app = express();
@@ -17,8 +14,7 @@ const app = express();
 app.use(express.json()); // This method returns the middleware that only parses JSON and only looks at the requests where the content-type header matches the type option.
 app.use(cors());
 
-app.set("view engine", "ejs");
-// view the ejs file
+app.set("view engine", "ejs"); // view the ejs file
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -119,30 +115,22 @@ app.post("/signin",
     })
 );
 
-app.post('/dashboard', async (req, res) => {
-    let { name, project, accopen, username, facility, designation, division, accexp, requirement, email } = req.body;
+app.post('/dashboard', (req, res) => {
 
-    let errors = [];
+    let { fname, designation, project, division, accopen, accexp, username, diskquota, facility, email } = req.body;
 
-    if (!name || !designation || !project || !division || !accopen || !accexp || !username || !requirement || !facility || !email) {
-        errors.push({ message: "Please enter all the fields" });
-    }
-
-    if (errors.length > 0) {
-        res.render('dashboard', { errors });
-    }
-    else {
-        poolcb.query(
-
-            `INSERT INTO records(name, designation, project, division, acc_openingdate, acc_expiry date, username, diskquota, facility, email)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`, (err, results) => {
-            if (err) {
-                throw err;
-            }
-            console.log(results.rows);
+    poolcb.query(
+        `INSERT INTO details(fname, designation, project, division, accopen, accexp, username, diskquota, facility, email)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+        RETURNING fname, designation, project, division, accopen, accexp, username, diskquota, facility, email`, [fname, designation, project, division, accopen, accexp, username, diskquota, facility, email], (err, results) => {
+        if (err) {
+            throw err;
         }
-        )
+        console.log(results.rows);
+        req.flash("success_msg", "Form Submitted");
+        res.redirect("/");
     }
+    )
 });
 
 function checkAuthenticated(req, res, next) {
@@ -162,3 +150,9 @@ function checkNotAuthenticated(req, res, next) {
 app.listen(4000, () => {
     console.log(`Server on localhost 4000`);
 })
+
+
+
+// if (!fname || !designation || !project || !division || !accopen || !accexp || !username || !diskquota || !facility || !email) {
+//     errors.push({ message: "Please enter all the fields" });
+// }

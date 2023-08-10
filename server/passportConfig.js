@@ -23,7 +23,7 @@ function initialize(passport) {
                             return done(null, user);
                         }
                         else {
-                            return done(null, false, { message: "Password is not correct" });
+                            return done(null, false, { message: "Invalid Credentials" });
                         }
                     });
                 } else {
