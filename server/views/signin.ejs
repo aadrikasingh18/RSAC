@@ -172,42 +172,49 @@
         .link {
             padding-top: 20px;
         }
+
+        .screen__content ul li{
+            color: red;
+            margin-left: 20px;
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 18px;
+        }
     </style>
-    <title>Document</title>
+    <title>RSAC</title>
 </head>
 
 <body>
-    <ul>
-        <% if(messages.success_msg) { %>
-            <li>
-                <%= messages.success_msg %>
-            </li>
-            <% } %>
-    </ul>
-
-    <ul>
-        <% if(messages.error) { %>
-            <li>
-                <%= messages.error %>
-            </li>
-            <% } %>
-
-    </ul>  
     <div class="navbar">
         REMOTE SENSING APPLICATION CENTER, UTTAR PRADESH
     </div>
     <div class="container_login">
         <div class="screen">
             <div class="screen__content">
+                <ul>
+                    <% if(messages.success_msg) { %>
+                        <li>
+                            <%= messages.success_msg %>
+                        </li>
+                        <% } %>
+                </ul>
+
+                <ul>
+                    <% if(messages.error) { %>
+                        <li>
+                            <%= messages.error %>
+                        </li>
+                        <% } %>
+                </ul>
                 <form action="/signin" method="POST" class="login">
                     <div class="login__field">
-                        <input type="text" class="login__input" placeholder="User name / Email" />
+                        <input type="text" name="email" id="email" class="login__input" placeholder="ENTER EMAIL" />
                     </div>
                     <div class="login__field">
-                        <input type="password" class="login__input" placeholder="Password" />
+                        <input type="password" name="password" id="password" class="login__input" placeholder="ENTER PASSWORD" />
                     </div>
                     <button class="button login__submit">
-                        <span class="button__text">Log In Now</span>
+                        <span class="button__text">Signin</span>
                         <i class="button__icon fas fa-chevron-right"></i>
                     </button>
                     <div class="link">
