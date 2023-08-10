@@ -61,115 +61,85 @@
 </head>
 
 <body>
-   <h1>DASHBOARD</h1>
-   <h1>HELLO <%= user.charAt(0).toUpperCase()+user.slice(1) %>
-   </h1>
 
+   <div class="navbar">
+      REMOTE SENSING APPLICATION CENTER, UTTAR PRADESH
+   </div>
+
+   <div class="navbelow">
+      Request form to OPEN / EXTEND User Account in CIP Division
+   </div>
    
+   <ul>
+      <% if(typeof errors !='undefined' ) { %>
+         <% errors.forEach(error=> { %>
+            <li>
+               <%= error.message %>
+            </li>
+            <% }) %>
+               <% } %>
+   </ul>
 
    <div class="container">
       <form action="/dashboard" method="POST">
          <div class="row">
             <div class="col-6">
-
                <div class="names">
                   Name : <input type="text" id="fname" name="fname" />
                </div>
-
                <div class="names">
                   Project : <input type="text" id="project" name="project" />
                </div>
-
                <div class="names">
                   A/C Opening Date : <input type="text" id="accopen" name="accopen" />
                </div>
-
                <div class="names">
                   Username : <input type="text" id="username" name="username" />
                </div>
-
                <div class="names">
                   Facility Required : <input type="text" id="facility" name="facility" />
                </div>
-
-               <!-- <div class="names">
-                  <div>
-                     Facility Required :
-                     
-                     <label>ERDAS ER Mapper</label>
-                     <input type="radio" id= "details1" name="details1" />
-
-
-                     <label>ERDAS Imagine</label>
-                     <input type="radio" id= "details2" name="details2" />
-
-                  </div>
-                  <div>
-                     <label>Geomatica</label>
-                     <input type="radio" id= "details3" name="details3" />
-
-                     <label>TNT-Mips</label>
-                     <input type="radio" id= "details4" name="details4" />
-
-                     <label>Ar GIS</label>
-                     <input type="radio" id= "details5" name="details5" />
-
-                     <label>AutoCad</label>
-                     <input type="radio" id= "details6" name="details6" />
-                  </div>
-               </div> -->
-
             </div>
             <div class="col-6">
                <div class="names">
                   Designation : <input type="text" id="designation" name="designation" />
                </div>
-
                <div class="names">
                   Division : <input type="text" id="division" name="division" />
                </div>
-
                <div class="names">
-                  A/C Expiry Date : <input type="text" id="accexp" name="accexp" pattern="\d{4}-\d{2}-\d{2}" />
+                  A/C Expiry Date : <input type="text" id="accexp" name="accexp" />
                </div>
-
                <div class="names">
-                  Disk Quota Required : <input type="number" id="requirement" name="requirement" />
+                  Disk Quota Required : <input type="number" id="diskquota" name="diskquota" />
                </div>
-
                <div class="names">
                   Email : <input type="email" id="email" name="email" />
                </div>
             </div>
          </div>
+
+         <div class="container">
+            <div class='note'>
+               NOTE :
+            </div>
+            <div>
+               User will be responsible for security of his/her account and data.
+            </div>
+            <div>
+               User will be responsible for the backup of their work.
+            </div>
+         </div>
+         <div class="container">
+            <button type="submit" class="btn btn-success">SUBMIT</button>
+            <span>
+               <a href="/logout">
+                  <button type="submit" class="btn btn-danger">LOGOUT</button>
+               </a>
+            </span>
+         </div>
       </form>
    </div>
-   <div class="container">
-      <div class='note'>
-         NOTE :
-      </div>
-      <div>
-         User will be responsible for security of his/her account and data.
-      </div>
-      <div>
-         User will be responsible for the backup of their work.
-      </div>
-   </div>
-   <div class="container">
-
-      
-         <button type="button" class="btn btn-success">SUBMIT</button>
-      
-      <span>
-         <a href="/logout">
-            <button type="button" class="btn btn-danger">LOGOUT</button>
-         </a>
-      </span>
-   </div>
-   </a>
-
-
-
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"></script>
@@ -182,3 +152,29 @@
 </body>
 
 </html>
+
+
+<!-- <div class="names">
+         <div>
+            Facility Required :
+               <label>ERDAS ER Mapper</label>
+               <input type="radio" id= "details1" name="details1" />
+               
+               <label>ERDAS Imagine</label>
+               <input type="radio" id= "details2" name="details2" />
+
+         </div>
+         <div>
+               <label>Geomatica</label>
+               <input type="radio" id= "details3" name="details3" />
+
+               <label>TNT-Mips</label>
+               <input type="radio" id= "details4" name="details4" />
+
+               <label>Ar GIS</label>
+               <input type="radio" id= "details5" name="details5" />
+
+               <label>AutoCad</label>
+               <input type="radio" id= "details6" name="details6" />
+         </div>
+      </div> -->

@@ -119,8 +119,18 @@ app.post('/dashboard', (req, res) => {
 
     let { fname, designation, project, division, accopen, accexp, username, diskquota, facility, email } = req.body;
 
+    let errors = [];
+
+    if (!fname || !designation || !project || !division || !accopen || !accexp || !username || !diskquota || !facility || !email) {
+        errors.push({ message: "Please enter all the fields" });
+    }
+
+    if (errors.length > 0) {
+        res.render('dashboard', { errors });
+    }
+
     poolcb.query(
-        `INSERT INTO details(fname, designation, project, division, accopen, accexp, username, diskquota, facility, email)
+        `INSERT INTO records(fname, designation, project, division, accopen, accexp, username, diskquota, facility, email)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
         RETURNING fname, designation, project, division, accopen, accexp, username, diskquota, facility, email`, [fname, designation, project, division, accopen, accexp, username, diskquota, facility, email], (err, results) => {
         if (err) {
@@ -153,6 +163,34 @@ app.listen(4000, () => {
 
 
 
-// if (!fname || !designation || !project || !division || !accopen || !accexp || !username || !diskquota || !facility || !email) {
-//     errors.push({ message: "Please enter all the fields" });
-// }
+
+
+
+// , designation, project, division, accopen, accexp, username, diskquota, facility, email
+
+
+// SQL QUERIES USED TO CREATE THE TABLE
+
+// select * from users;
+// create table users (
+// id bigserial primary key not null,
+// name varchar(100) not null,
+// email varchar(100) not null,
+// password varchar(100) not null,
+// unique (email)
+// );
+
+// select * from records;
+// create table records (
+// id bigserial primary key not null,
+// fname varchar(100) not null,
+// designation varchar(100) not null,
+// project varchar(100) not null,
+// division varchar(100) not null,
+// accopen varchar(100) not null,
+// accexp varchar(100) not null,
+// username varchar(100) not null,
+// diskquota int not null,
+// facility varchar(100) not null,
+// email varchar(100) not null
+// );

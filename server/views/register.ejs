@@ -170,7 +170,7 @@
             padding-top: 20px;
         }
 
-        .screen__content ul li{
+        .screen__content ul li {
             color: red;
             margin-left: 20px;
             margin-top: 25px;
@@ -182,13 +182,17 @@
 </head>
 
 <body>
-    
+    <div class="navbar">
+        REMOTE SENSING APPLICATION CENTER, UTTAR PRADESH
+    </div>
+
     <div class="container_signup">
         <div class="screen">
             <div class="screen__content">
 
+
                 <ul>
-                    <% if(typeof errors !='undefined') { %>
+                    <% if(typeof errors !='undefined' ) { %>
                         <% errors.forEach(error=> { %>
                             <li>
                                 <%= error.message %>
