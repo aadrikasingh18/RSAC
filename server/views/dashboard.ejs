@@ -91,7 +91,7 @@
                   Project : <input type="text" id="project" name="project" />
                </div>
                <div class="names">
-                  A/C Opening Date : <input type="text" id="accopen" name="accopen" />
+                  A/C Opening Date : <input type="date" id="accopen" name="accopen" onchange="handledatechange()"/>
                </div>
                <div class="names">
                   Username : <input type="text" id="username" name="username" />
@@ -108,21 +108,16 @@
                   Division : <input type="text" id="division" name="division" />
                </div>
                <div class="names">
-                  A/C Expiry Date : <input type="text" id="accexp" name="accexp" />
+                  A/C Expiry Date : <input type="date" id="accexp" name="accexp" onchange="handledatechange()" />
                </div>
                <div class="names">
-<<<<<<< HEAD
                   Disk Quota Required : <input type="number" id="diskquota" name="diskquota" />
-=======
-                  Disk Quota Required : <input type="number" id="requirement" name="diskquota" />
->>>>>>> f4838ae2dd2f1274e040d5ece40feb72901a5bc7
                </div>
                <div class="names">
                   Email : <input type="email" id="email" name="email" />
                </div>
             </div>
          </div>
-<<<<<<< HEAD
 
          <div class="container">
             <div class='note'>
@@ -134,43 +129,26 @@
             <div>
                User will be responsible for the backup of their work.
             </div>
+            <div>
+               Fill all the details.
+            </div>
          </div>
          <div class="container">
-            <button type="submit" class="btn btn-success">SUBMIT</button>
-            <span>
-               <a href="/logout">
-                  <button type="submit" class="btn btn-danger">LOGOUT</button>
-               </a>
-            </span>
+            <button type="submit" class="btn btn-success">SUBMIT</button> 
          </div>
       </form>
-=======
-      
    </div>
-   <div class="container">
-      <div class='note'>
-         NOTE :
-      </div>
-      <div>
-         User will be responsible for security of his/her account and data.
-      </div>
-      <div>
-         User will be responsible for the backup of their work.
-      </div>
-   </div>
-   <div class="container">
+   <script>
+      function handledatechange(){
+         var date_picker1 = document.getElementById("accopen").value;
+      }
+   </script>
+   <script>
+      function handledatechange(){
+         var date_picker1 = document.getElementById("accexp").value;
+      }
+   </script>
 
-      
-         <button type="submit" class="btn btn-success">SUBMIT</button>
-      
-      <span>
-         <a href="/logout">
-            <button type="submit" class="btn btn-danger">LOGOUT</button>
-         </a>
-      </span>
-   </form>
->>>>>>> f4838ae2dd2f1274e040d5ece40feb72901a5bc7
-   </div>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"></script>
@@ -183,7 +161,6 @@
 </body>
 
 </html>
-<<<<<<< HEAD
 
 
 <!-- <div class="names">
@@ -210,5 +187,9 @@
                <input type="radio" id= "details6" name="details6" />
          </div>
       </div> -->
-=======
->>>>>>> f4838ae2dd2f1274e040d5ece40feb72901a5bc7
+
+      <!-- <span>
+               <a href="/logout">
+                  <button type="submit" class="btn btn-danger">LOGOUT</button>
+               </a>
+            </span> -->

@@ -54,6 +54,10 @@ app.get('/logout', function (req, res, next) {
     });
 });
 
+app.get('/exit', function(req,res){
+    res.render("exit");
+})
+
 app.post('/register', async (req, res) => {
     let { name, email, password, password2 } = req.body;
 
@@ -119,26 +123,16 @@ app.post('/dashboard', (req, res) => {
 
     let { fname, designation, project, division, accopen, accexp, username, diskquota, facility, email } = req.body;
 
-    let errors = [];
-
-    if (!fname || !designation || !project || !division || !accopen || !accexp || !username || !diskquota || !facility || !email) {
-        errors.push({ message: "Please enter all the fields" });
-    }
-
-    if (errors.length > 0) {
-        res.render('dashboard', { errors });
-    }
-
     poolcb.query(
         `INSERT INTO records(fname, designation, project, division, accopen, accexp, username, diskquota, facility, email)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
         RETURNING fname, designation, project, division, accopen, accexp, username, diskquota, facility, email`, [fname, designation, project, division, accopen, accexp, username, diskquota, facility, email], (err, results) => {
-        if (err) {
-            throw err;
-        }
+            if (err) {
+                throw err;
+            }
         console.log(results.rows);
         req.flash("success_msg", "Form Submitted");
-        res.redirect("/");
+        res.redirect("/exit");
     }
     )
 });
